@@ -1,18 +1,11 @@
 <template>
       <header>
-
         <div class="container-header" :class="{'nav-open':open}">
             <div class="mobile-nav">
                 <ul class="mobile-nav__list">
-                    <li class="link"> <a class="link-tag" href="#">Collections</a> </li>
-                       
-                    <li class="link"><a class="link-tag" href="#">Men</a> </li>
-
-                    <li class="link"><a class="link-tag" href="#">Women</a> </li>
-
-                    <li class="link"> <a class="link-tag" href="#">About</a></li>
-
-                    <li class="link"><a class="link-tag" href="#">Contact</a> </li>
+                    <li class="link" v-for="link in links" :key="link.title">  
+                           <router-link :to="link.link">{{link.title}}</router-link>
+                     </li>
                 </ul>
             </div>
 
@@ -30,32 +23,15 @@
 
                 <div class="links-container ">
                     <ul class="links">
-                        <li class="link">  
-                           <router-link :to="{name:'collections'}"> Collection</router-link>
+                        <li class="link" v-for="link in links" :key="link.title">  
+                           <router-link :to="link.link">{{link.title}}</router-link>
                         </li>
-
-                        <li class="link"> 
-                                <router-link :to="{name:'Men'}"> Men</router-link> 
-                        </li>
-
-                        <li class="link"> 
-                                <router-link :to="{name:'Women'}"> Woman</router-link> 
-                        </li>
-
-                        <li class="link"> 
-                                <router-link :to="{name:'About'}"> About</router-link> 
-                        </li>
-
-                        <li class="link"> 
-                                <router-link :to="{name:'Contact'}"> Contact</router-link> 
-                        </li>
-
                     </ul>
                 </div>
             </nav>
 
             <div class="basket">
-                <div class="basket-icon-container">
+                <div class="basket-icon-container" @click="toggleCard">
                     <img :src="require('@/assets/images/icon-cart.svg')" alt="cartIcon">
 
                     <span class="product-number "></span>
@@ -76,28 +52,26 @@
 export default {
         data(){
                 return{
-                        open:false
+                        open:false,
+                        links:[{title:"Collection",link:{name:'collections'}},
+                        {title:"Men",link:{name:'Men'}},
+                        {title:"Women",link:{name:'Women'}},
+                        {title:"About",link:{name:'About'}},
+                        {title:"Contact",link:{name:'Contact'}}]
                 }
         },
         methods:{
                 handleMobileNav(){
                         this.open = !this.open
+                },
+                toggleCard(){
+                    this.$store.dispatch('toggleCard')
                 }
         }
 }
 </script>
 
 <style scoped lang="scss">
-$VeryDarkBlue: hsl(220, 13%, 13%);
-$Orange: hsl(26, 100%, 55%);
-$Black: black;
-
-@mixin flex-container($flexDirection: row, $justify: center, $align: center) {
-    display: flex;
-    justify-content: $justify;
-    align-items: $align;
-    flex-direction: $flexDirection;
-}
 
 header {
     padding-block: 3rem;
@@ -185,6 +159,7 @@ header {
 
             .basket-icon-container {
                 position: relative;
+                cursor: pointer;
 
                 .product-number {
                     height: 1.8rem;
@@ -262,7 +237,7 @@ header {
                                 padding-top: 8rem;
 
                                         .link {
-                                        .link-tag {
+                                                 a{
                                                 text-decoration: none;
                                                 position: relative;
                                                 color: $VeryDarkBlue;

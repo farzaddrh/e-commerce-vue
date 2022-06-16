@@ -159,4 +159,38 @@ export default {
             }
         }
     }
+    ////////////////////RESPONSIVE//////////////////
+    @media (max-width: 768px) {
+         .product-info {
+            margin-top: 3rem;
+
+            .product-info-company {
+                font-size: 1.5rem;
+            }
+
+            .product-info-title {
+                font-size: 3.5rem;
+            }
+
+            .real-price {
+                float: right;
+                margin-top: -3.4rem;
+            }
+
+            .add-product {
+                display: block;
+                padding-right: 0;
+
+                .btns {
+                    width: 100%;
+                    margin-bottom: 2rem;
+                }
+
+                .btn-add {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
 </style>

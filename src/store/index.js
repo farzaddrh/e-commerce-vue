@@ -5,8 +5,8 @@ export default createStore({
     return {
       activeSlide: null,
       productNumber: 0,
-      cardIsVisible: false,
-      cardHasProduct: false,
+      cartIsVisible: false,
+      cartProductNumber: 0,
     };
   },
   getters: {
@@ -16,12 +16,12 @@ export default createStore({
     productNumber(state) {
       return state.productNumber;
     },
-    cardIsVisible(state) {
-      return state.cardIsVisible;
+    cartIsVisible(state) {
+      return state.cartIsVisible;
     },
-    cardHasProduct(state) {
-      return state.cardHasProduct;
-    },
+    cartProductNumber(state){
+        return state.cartProductNumber
+    }
   },
   mutations: {
     SHOWACTIVESLIDE(state, payload) {
@@ -32,30 +32,28 @@ export default createStore({
       if (state.productNumber >= 1 && payload === "subtract")
         state.productNumber--;
     },
-    TOGGLECARD(state) {
-      state.cardIsVisible = !state.cardIsVisible;
+    TOGGLECART(state) {
+      state.cartIsVisible = !state.cartIsVisible;
     },
-    ADDPRODUCTTOCARD(state) {
-      if (state.productNumber > 0) state.cardHasProduct = true;
-      else state.cardHasProduct=false
-      console.log(state.cardHasProduct);
+    ADDPRODUCTTOCART(state) {
+      state.cartProductNumber+=state.productNumber
     },
   },
   actions: {
     showActiveSlide(context, payload) {
       context.commit("SHOWACTIVESLIDE", payload);
     },
-    addToCart(context) {
+    addProduct(context) {
       context.commit("CHANGEPRODUCTNUMBER", "add");
     },
-    subtractFromCart(context) {
+    subtractProduct(context) {
       context.commit("CHANGEPRODUCTNUMBER", "subtract");
     },
-    toggleCard(context) {
-      context.commit("TOGGLECARD");
+    toggleCart(context) {
+      context.commit("TOGGLECART");
     },
-    addProductToCard(context) {
-      context.commit("ADDPRODUCTTOCARD");
+    addProductToCart(context) {
+      context.commit("ADDPRODUCTTOCART");
     },
   },
 });

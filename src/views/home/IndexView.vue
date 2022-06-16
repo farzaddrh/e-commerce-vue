@@ -11,7 +11,7 @@
 
   <e-slider v-if="activeSlide"></e-slider>
 
-  <e-card v-if="cardIsVisible"></e-card>
+  <e-cart v-if="cartIsVisible"></e-cart>
 </template>
 
 <script>
@@ -21,7 +21,7 @@ import EProductInfo from "@/components/EProductInfo.vue"
 import EProductImage from "@/components/EProductImage.vue"
 import ESlider from "@/components/ESlider.vue"
 import EOverlay from "@/components/EOverlay.vue"
-import ECard from "@/components/ECard.vue"
+import ECart from "@/components/ECart.vue"
 
 
 export default {
@@ -32,15 +32,15 @@ export default {
     EProductImage,
     ESlider,
     EOverlay,
-    ECard
-  
+    ECart
+
   },
   computed:{
     activeSlide(){
       return this.$store.getters.activeSlide
     },
-    cardIsVisible(){
-      return this.$store.getters.cardIsVisible
+    cartIsVisible(){
+      return this.$store.getters.cartIsVisible
     }
   }
 }

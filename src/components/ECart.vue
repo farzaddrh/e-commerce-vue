@@ -6,9 +6,9 @@
                 </div>
 
                 <div class="cart-body ">
-                        <p class='empty' v-if="!cardHasProduct">Your cart is empty.</p>
+                        <p class='empty' v-if="cartProductNumber<=0">Your cart is empty.</p>
 
-                        <div class="sneaker-info" v-if="cardHasProduct">
+                        <div class="sneaker-info" v-else>
                                 <div class="total-price">
                                         <div class="final-product">
                                                 <img :src="require('@/assets/images/image-product-1.jpg')" alt="sneaker">
@@ -16,10 +16,10 @@
 
                                         <p class="sneaker-description">Fall Limited Edition Sneakers <br>
                                                 $125.00 &#215;
-                                                <span class="num">{{cardHasProduct}}</span>
+                                                <span class="num">{{cartProductNumber}}</span>
                                                 <span class='tot-price'>${{totalPrice}}</span>
                                         </p>
-                                        
+
                                         <div class="delete">
                                                 <img :src="require('@/assets/images/icon-delete.svg')" alt="delete">
                                         </div>
@@ -32,19 +32,19 @@
                 </div>
 
     </div>
-</Teleport>  
+</Teleport>
 </template>
 <script>
 export default {
     computed:{
-        cardHasProduct(){ 
-            return this.$store.getters.cardHasProduct
-        },
         totalPrice(){
-            return (this.$store.getters.productNumber * 125).toFixed(2)
+            return (this.cartProductNumber * 125).toFixed(2)
+        },
+        cartProductNumber(){
+            return this.$store.getters.cartProductNumber
         }
     }
-        
+
 }
 </script>
 <style scoped lang="scss">

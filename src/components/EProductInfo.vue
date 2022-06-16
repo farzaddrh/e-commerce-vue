@@ -18,22 +18,22 @@
 
             <div class="add-product">
                 <div class="btns">
-                    <button class="btn btn-minus" @click="subtractFromCart">
+                    <button class="btn btn-minus" @click="subtractProduct">
                         <img :src="require('@/assets/images/icon-minus.svg')" alt="minus">
                     </button>
 
                     <input type="text" name="product-num" id="product-num" :value="productNum" disabled>
 
-                    <button class="btn btn-plus" @click="addToCart">
+                    <button class="btn btn-plus" @click="addProduct">
                         <img :src="require('@/assets/images/icon-plus.svg')" alt="plus">
                     </button>
 
                 </div>
 
-                <button class="btn-add" @click="addProductToCart" > 
+                <button class="btn-add" @click="addProductToCart" >
                         <span>
-                        <img :src="require('@/assets/images/icon-cart-white.svg')" alt="iconCart"> 
-                        </span> 
+                        <img :src="require('@/assets/images/icon-cart-white.svg')" alt="iconCart">
+                        </span>
                         Add to cart
                     </button>
             </div>
@@ -42,14 +42,14 @@
 <script>
 export default {
     methods:{
-        addToCart(){
-            this.$store.dispatch('addToCart')
+        addProduct(){
+            this.$store.dispatch('addProduct')
         },
-        subtractFromCart(){
-            this.$store.dispatch('subtractFromCart')
+        subtractProduct(){
+            this.$store.dispatch('subtractProduct')
         },
         addProductToCart(){
-            this.$store.dispatch('addProductToCard')
+            this.$store.dispatch('addProductToCart')
         }
     },
     computed:{
@@ -57,7 +57,7 @@ export default {
             return this.$store.getters.productNumber
         }
     }
-        
+
 }
 </script>
 <style scoped lang="scss">

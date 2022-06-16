@@ -3,7 +3,7 @@
         <div class="container-header" :class="{'nav-open':open}">
             <div class="mobile-nav">
                 <ul class="mobile-nav__list">
-                    <li class="link" v-for="link in links" :key="link.title">  
+                    <li class="link" v-for="link in links" :key="link.title">
                            <router-link :to="link.link">{{link.title}}</router-link>
                      </li>
                 </ul>
@@ -23,7 +23,7 @@
 
                 <div class="links-container ">
                     <ul class="links">
-                        <li class="link" v-for="link in links" :key="link.title">  
+                        <li class="link" v-for="link in links" :key="link.title">
                            <router-link :to="link.link">{{link.title}}</router-link>
                         </li>
                     </ul>
@@ -31,10 +31,10 @@
             </nav>
 
             <div class="basket">
-                <div class="basket-icon-container" @click="toggleCard">
+                <div class="basket-icon-container" @click="toggleCart">
                     <img :src="require('@/assets/images/icon-cart.svg')" alt="cartIcon">
 
-                    <span class="product-number "></span>
+                    <span class="product-number " v-if="cartProductNumber>0">{{cartProductNumber}}</span>
 
                 </div>
 
@@ -64,9 +64,14 @@ export default {
                 handleMobileNav(){
                         this.open = !this.open
                 },
-                toggleCard(){
-                    this.$store.dispatch('toggleCard')
+                toggleCart(){
+                    this.$store.dispatch('toggleCart')
                 }
+        },
+        computed:{
+             cartProductNumber(){
+            return this.$store.getters.cartProductNumber
+        }
         }
 }
 </script>
@@ -174,13 +179,10 @@ header {
                     position: absolute;
                     top: -12px;
                     left: 7px;
-                    visibility: hidden;
+
                 }
             }
 
-            .active-basket {
-                visibility: visible !important;
-            }
         }
     }
 }

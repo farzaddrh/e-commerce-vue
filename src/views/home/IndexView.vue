@@ -7,8 +7,6 @@
   <e-product-info></e-product-info>
   </section>
 
-  <e-overlay v-if="activeSlide"></e-overlay>
-
   <e-slider v-if="activeSlide"></e-slider>
 
   <e-cart v-if="cartIsVisible"></e-cart>
@@ -20,7 +18,6 @@ import EHeader from '@/components/layout/EHeader.vue'
 import EProductInfo from "@/components/EProductInfo.vue"
 import EProductImage from "@/components/EProductImage.vue"
 import ESlider from "@/components/ESlider.vue"
-import EOverlay from "@/components/EOverlay.vue"
 import ECart from "@/components/ECart.vue"
 
 
@@ -31,7 +28,6 @@ export default {
     EProductInfo,
     EProductImage,
     ESlider,
-    EOverlay,
     ECart
 
   },

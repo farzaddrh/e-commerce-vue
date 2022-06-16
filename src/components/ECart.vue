@@ -129,5 +129,12 @@ export default {
         }
     }
 }
-
+//////////////////////////RESPONSIVE//////////////////////
+@media (max-width: 768px) {
+    .cart {
+        right: 2rem;
+        top: 8rem;
+        width: 30rem;
+    }
+}
 </style>

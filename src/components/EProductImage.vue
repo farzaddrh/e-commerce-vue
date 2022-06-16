@@ -1,25 +1,22 @@
 <template>
   <div class="product-image">
-            <div class="slider-mobile hidden">
-
-
+            <div class="slider-mobile">
                 <div class="img-large-slider-mobile">
-
                     <div class="slide-mobile ">
-                        <img src="images/image-product-4.jpg" class="img-large-slider" alt="productImage" />
+                        <img :src="require(`@/assets/images/image-product-${currentSlide}.jpg`)" class="img-large-slider" alt="productImage" />
                     </div>
-                    <div class="slide-mobile  ">
+                    <!-- <div class="slide-mobile  ">
                         <img src="images/image-product-3.jpg" class="img-large-slider" alt="productImage" />
                     </div>
                     <div class="slide-mobile  "><img src="images/image-product-2.jpg" class="img-large-slider"
                             alt="productImage" /></div>
                     <div class="slide-mobile"> <img src="images/image-product-1.jpg" class="img-large-slider"
-                            alt="productImage" /></div>
-                    <div class="next-mobile ">
-                        <img src="images/icon-next.svg" alt="iconNext">
+                            alt="productImage" /></div> -->
+                    <div class="next-mobile" @click="goNextSlide">
+                        <img :src="require('@/assets/images/icon-next.svg')" alt="iconNext">
                     </div>
-                    <div class="previous-mobile ">
-                        <img src="images/icon-previous.svg" alt="iconPrevious">
+                    <div class="previous-mobile" @click="goPreviousSlide" >
+                        <img :src="require('@/assets/images/icon-previous.svg')" alt="iconPrevious">
                     </div>
 
                 </div>
@@ -38,13 +35,14 @@
             </div>
 
         </div>
-        
+
 </template>
 <script>
 export default {
     data(){
         return {
-            activeImage:1
+            activeImage:1,
+            currentSlide:1
         }
     },
     methods:{
@@ -53,19 +51,28 @@ export default {
         },
         showSlider(){
             this.$store.dispatch('showActiveSlide',this.activeImage)
-            
+
         },
+         goNextSlide(){
+             if(this.currentSlide === 4) this.currentSlide=1
+              else this.currentSlide++
+            },
+         goPreviousSlide(){
+             if(this.currentSlide === 1) this.currentSlide=4
+             else this.currentSlide--
+            },
     }
-        
+
 }
 </script>
 <style scoped lang="scss">
-    .hidden{
-        display: none;
-    }
     .product-image {
         justify-self: end;
         padding-right: 0;
+
+        .slider-mobile{
+            display: none;
+        }
 
         .product-img-large {
             cursor: pointer;
@@ -106,6 +113,76 @@ export default {
                 .img-small {
                     opacity: 0.4;
                 }
+            }
+        }
+    }
+    /////////////////////RESONSIVE/////////////////////
+    @media (max-width: 768px) {
+         .product-image {
+            width: 100%;
+
+            .slider-mobile {
+                display: block !important;
+                width: 100%;
+                position: relative;
+                margin-top: -3.3rem;
+
+                .img-large-slider-mobile {
+                    display: grid;
+                    grid-template-columns: 1fr;
+                    grid-template-rows: 1fr;
+
+                    .slide-mobile {
+                        width: 100%;
+                        grid-row: 1;
+                        grid-column: 1;
+
+                        .img-large-slider {
+                            width: 100%;
+                        }
+                    }
+                }
+
+                .next-mobile {
+                    @include btnMove();
+                    right: 0;
+                    transform: translate(50%, -50%);
+                    cursor: pointer;
+                    right: 4.2rem;
+
+                    img {
+                        height: 40px;
+                        width: 14px;
+                        object-fit: contain;
+                        margin-inline: 13px;
+                    }
+                }
+
+                .previous-mobile {
+                    @include btnMove();
+                    left: 0;
+                    transform: translate(-50%, -50%);
+                    cursor: pointer;
+                    left: 4.2rem;
+
+                    img {
+                        height: 40px;
+                        width: 14px;
+                        object-fit: contain;
+                        margin-inline: 13px;
+                    }
+
+                }
+
+            }
+
+            .product-img-large {
+                display: none;
+
+            }
+
+            .product-imgs-small {
+                display: none;
             }
         }
     }

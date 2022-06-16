@@ -223,12 +223,13 @@ header {
              .mobile-nav {
                         position: absolute;
                         top: 0;
-                        left: 0;
+                        left: -1rem;
                         min-height: 120vh;
                         width: 50%;
                         z-index: 30;
                         background-color: white;
                         display: block;
+                        min-height: 120vh;
 
                         .mobile-nav__list {
                                 display: flex;

@@ -58,5 +58,13 @@ export default {
     align-items: center;
     justify-items: center;
     }
-
+//////////////////////////RESPONSIVE/////////////////////
+@media (max-width: 768px) {
+    .section-product {
+        grid-template-columns: 1fr;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        }
+    }
 </style>

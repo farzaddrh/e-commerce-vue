@@ -20,7 +20,7 @@
                                                 <span class='tot-price'>${{totalPrice}}</span>
                                         </p>
 
-                                        <div class="delete">
+                                        <div class="delete" @click="deleteProductFromCart">
                                                 <img :src="require('@/assets/images/icon-delete.svg')" alt="delete">
                                         </div>
                                 </div>
@@ -36,13 +36,19 @@
 </template>
 <script>
 export default {
+    methods:{
+        deleteProductFromCart(){
+            this.$store.dispatch('deleteProductFromCart')
+        }
+    },
     computed:{
         totalPrice(){
             return (this.cartProductNumber * 125).toFixed(2)
         },
         cartProductNumber(){
             return this.$store.getters.cartProductNumber
-        }
+        },
+
     }
 
 }
@@ -104,6 +110,10 @@ export default {
                         font-weight: 700;
                         margin-left: 0.5rem;
                     }
+                }
+
+                .delete{
+                    cursor: pointer;
                 }
             }
 

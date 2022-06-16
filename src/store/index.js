@@ -19,9 +19,9 @@ export default createStore({
     cartIsVisible(state) {
       return state.cartIsVisible;
     },
-    cartProductNumber(state){
-        return state.cartProductNumber
-    }
+    cartProductNumber(state) {
+      return state.cartProductNumber;
+    },
   },
   mutations: {
     SHOWACTIVESLIDE(state, payload) {
@@ -36,7 +36,12 @@ export default createStore({
       state.cartIsVisible = !state.cartIsVisible;
     },
     ADDPRODUCTTOCART(state) {
-      state.cartProductNumber+=state.productNumber
+      state.cartProductNumber += state.productNumber;
+      state.productNumber = 0;
+    },
+    DELETEPRODUCTSFROMCART(state) {
+      state.cartProductNumber = 0;
+      state.productNumber = 0;
     },
   },
   actions: {
@@ -54,6 +59,9 @@ export default createStore({
     },
     addProductToCart(context) {
       context.commit("ADDPRODUCTTOCART");
+    },
+    deleteProductFromCart(context) {
+      context.commit("DELETEPRODUCTSFROMCART");
     },
   },
 });

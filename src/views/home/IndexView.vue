@@ -1,6 +1,4 @@
 <template>
-  <e-header></e-header>
-
   <section  class="section-product">
   <e-product-image></e-product-image>
 
@@ -8,36 +6,30 @@
   </section>
 
   <e-slider v-if="activeSlide"></e-slider>
-
-  <e-cart v-if="cartIsVisible"></e-cart>
 </template>
 
 <script>
 // @ is an alias to /src
-import EHeader from '@/components/layout/EHeader.vue'
+
 import EProductInfo from "@/components/EProductInfo.vue"
 import EProductImage from "@/components/EProductImage.vue"
 import ESlider from "@/components/ESlider.vue"
-import ECart from "@/components/ECart.vue"
+
 
 
 export default {
   name: 'HomeView',
   components:{
-    EHeader,
     EProductInfo,
     EProductImage,
     ESlider,
-    ECart
+
 
   },
   computed:{
     activeSlide(){
       return this.$store.getters.activeSlide
     },
-    cartIsVisible(){
-      return this.$store.getters.cartIsVisible
-    }
   }
 }
 </script>
